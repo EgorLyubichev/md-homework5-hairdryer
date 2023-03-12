@@ -1,4 +1,4 @@
-package org.lev;
+package org.lev.onliner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +15,4 @@ public class OnlinerHomePage extends BasePage {
         driver.findElement(hairdryerLink).click();
         return this;
     }
-
-
 }

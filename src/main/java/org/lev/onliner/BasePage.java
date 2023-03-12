@@ -1,4 +1,4 @@
-package org.lev;
+package org.lev.onliner;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,8 +15,9 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public void open(String url) {
+    public boolean openPage(String url){
         driver.get(url);
+        return true;
     }
 
     public WebElement waitElementIsVisible(WebElement element) {
