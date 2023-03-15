@@ -1,6 +1,7 @@
 package org.lev;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -14,30 +15,22 @@ import static org.testng.Assert.assertTrue;
 public class OnlinerHairdryerPageTest extends BaseTest{
 
     @Test
-    public void testToGetBraunList_AllProductsAreBraun() throws InterruptedException {
+    public void testToGetList_AllProductsAreBraun() {
 
         onlinerBasePage.openPage(ONLINER_HOME_PAGE);
-
         onlinerHomePage.switchToHairdryerList();
-
         hairdryersPage
                 .clickAllBrands()
                 .chooseLabelFromListIfLabelIsVisible(BRAUN)
                 .closeLabelsWindow()
-                .waitProductElements(BRAUN);
-
-        /**
-         * Вот тут я не разобрался с задачей (((
-         * */
-        Thread.sleep(1000);
-
+                .waitProductElements();
         List<WebElement> elements = hairdryersPage.getProductCards(BRAUN);
 
-        assertTrue(hairdryersPage.isLabelHairdryer(elements, BRAUN));
+        Assert.assertTrue(hairdryersPage.isLabelHairdryer(elements, BRAUN));
     }
 
     @Test
-    public void testToGetBraunList_AllProductsAreErika() throws InterruptedException {
+    public void testToGetList_AllProductsAreErika() throws InterruptedException {
 
         onlinerBasePage.openPage(ONLINER_HOME_PAGE);
 
@@ -47,12 +40,7 @@ public class OnlinerHairdryerPageTest extends BaseTest{
                 .clickAllBrands()
                 .chooseLabelFromListIfLabelIsVisible(ERIKA)
                 .closeLabelsWindow()
-                .waitProductElements(ERIKA);
-
-        /**
-         * Вот тут я не разобрался с задачей (((
-         * */
-        Thread.sleep(1000);
+                .waitProductElements();
 
         List<WebElement> elements = hairdryersPage.getProductCards(ERIKA);
 
@@ -60,7 +48,7 @@ public class OnlinerHairdryerPageTest extends BaseTest{
     }
 
     @Test
-    public void testToGetBraunList_AllProductsAreMaestro() throws InterruptedException {
+    public void testToGetList_AllProductsAreMaestro() throws InterruptedException {
 
         onlinerBasePage.openPage(ONLINER_HOME_PAGE);
 
@@ -70,12 +58,8 @@ public class OnlinerHairdryerPageTest extends BaseTest{
                 .clickAllBrands()
                 .chooseLabelFromListIfLabelIsVisible(MAESTRO)
                 .closeLabelsWindow()
-                .waitProductElements(MAESTRO);
+                .waitProductElements();
 
-        /**
-         * Вот тут я не разобрался с задачей (((
-         * */
-        Thread.sleep(1000);
 
         List<WebElement> elements = hairdryersPage.getProductCards(MAESTRO);
 

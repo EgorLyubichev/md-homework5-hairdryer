@@ -13,8 +13,8 @@ public class DriverConnector {
         chromeOptions.addArguments("--remote-allow-origins=*");
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(ofSeconds(10));
-        driver.manage().timeouts().pageLoadTimeout(ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(ofSeconds(4));
+        driver.manage().timeouts().pageLoadTimeout(ofSeconds(4));
         return driver;
     }
 }

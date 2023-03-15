@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static java.time.Duration.ofSeconds;
-
 public class OnlinerHairdryersPage extends BasePage {
 
     public OnlinerHairdryersPage(WebDriver driver) {
@@ -16,7 +14,8 @@ public class OnlinerHairdryersPage extends BasePage {
     }
 
     protected By hairdryersBrands = By.xpath("//div[@class='schema-filter-control__item']/span[text()='167']/..");
-
+    protected By noProducts = By.xpath("//span[@class='schema-filter-button__sub schema-filter-button__sub_main'][contains(text(), 'Нет товаров')]");
+    protected By foundSomeProducts = By.xpath("//span[@class='schema-filter-button__sub schema-filter-button__sub_main'][contains(text(), 'Найдено')]");
 
     public OnlinerHairdryersPage clickAllBrands() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -38,9 +37,9 @@ public class OnlinerHairdryersPage extends BasePage {
         return this;
     }
 
-    public OnlinerHairdryersPage waitProductElements(String label){
-        WebElement element = driver.findElement(createProductLocator(label));
-        waitElementIsVisible(element);
+    public OnlinerHairdryersPage waitProductElements() {
+        driver.findElement(noProducts);
+        driver.findElement(foundSomeProducts);
         return this;
     }
 
@@ -48,11 +47,9 @@ public class OnlinerHairdryersPage extends BasePage {
         return driver.findElements(createProductLocator(label));
     }
 
-
-
-    private By createProductLocator(String label){
-        String xpath = "//div[@class='schema-product__title']/a[@class='js-product-title-link']/span[contains(text(), "
-                + label + ")]";
+    private By createProductLocator(String label) {
+        String xpath = "//span[@data-bind='html: product.extended_name || product.full_name'][contains(text(), '"
+                + label + "')]";
         return By.xpath(xpath);
     }
 
