@@ -1,18 +1,19 @@
-package org.lev;
+package org.lev.homework5test;
 
+import org.lev.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.lev.OnlinerConstant.BRAUN;
-import static org.lev.OnlinerConstant.ERIKA;
-import static org.lev.OnlinerConstant.MAESTRO;
-import static org.lev.OnlinerConstant.ONLINER_HOME_PAGE;
+import static org.lev.constants.OnlinerConstant.BRAUN;
+import static org.lev.constants.OnlinerConstant.ERIKA;
+import static org.lev.constants.OnlinerConstant.MAESTRO;
+import static org.lev.constants.OnlinerConstant.ONLINER_HOME_PAGE;
 import static org.testng.Assert.assertTrue;
 
-public class OnlinerHairdryerPageTest extends BaseTest{
+public class OnlinerHairdryerPageTest extends BaseTest {
 
     @Test
     public void testToGetList_AllProductsAreBraun() {

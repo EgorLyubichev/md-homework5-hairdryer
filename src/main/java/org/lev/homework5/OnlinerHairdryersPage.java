@@ -1,5 +1,6 @@
-package org.lev.onliner;
+package org.lev.homework5;
 
+import org.lev.onliner.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
