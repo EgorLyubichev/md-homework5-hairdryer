@@ -33,47 +33,27 @@ public interface OnlinerConstant {
 
     /*Accessories category*/
     By VIDEOCARD = By.xpath("//a[@href='https://catalog.onliner.by/videocard']");
-    Map<String, String> VIDEOCARD_FIELDS = Map.of(
-            "name", "Видеокарты",
-            "volume","1,447 товаров",
-            "price","от 87,00 р.");
+    String VIDEOCARD_NAME = "Видеокарты";
 
     By CPU = By.xpath("//a[@href='https://catalog.onliner.by/cpu']");
-    Map<String, String> CPU_FIELDS = Map.of(
-            "name", "Процессоры",
-            "volume","1,247 товаров",
-            "price","от 20,80 р.");
+    String CPU_NAME = "Процессоры";
 
     By MOTHERBOARD = By.xpath("//a[@href='https://catalog.onliner.by/motherboard']");
-    Map<String, String> MOTHERBOARD_FIELDS = Map.of(
-            "name", "Материнские платы",
-            "volume","1,985 товаров",
-            "price","от 120,00 р.");
+    String MOTHERBOARD_NAME = "Материнские платы";
 
     By DRAM = By.xpath("//a[@href='https://catalog.onliner.by/dram']");
-    Map<String, String> DRAM_FIELDS = Map.of(
-            "name", "Оперативная память",
-            "volume","3,475 товаров",
-            "price","от 27,90 р.");
+    String DRAM_NAME = "Оперативная память";
 
     By FAN = By.xpath("//a[@href='https://catalog.onliner.by/fan']");
-    Map<String, String> FAN_FIELDS = Map.of(
-            "name", "Системы охлаждения",
-            "volume","2,523 товара",
-            "price","от 1,39 р.");
+    String FAN_NAME = "Системы охлаждения";
 
     By SSD = By.xpath("//a[@href='https://catalog.onliner.by/ssd']");
-    Map<String, String> SSD_FIELDS = Map.of(
-            "name", "SSD",
-            "volume","3,607 товаров",
-            "price","от 25,60 р.");
+    String SSD_NAME = "SSD";
 
     By HDD = By.xpath("//a[@href='https://catalog.onliner.by/hdd']");
-    Map<String, String> HDD_FIELDS = Map.of(
-            "name", "Жесткие диски",
-            "volume","906 товаров",
-            "price","от 47,46 р.");
+    String HDD_NAME = "Жесткие диски";
 
-
+    String PRODUCTS_NUMBER_EXPRESSION = "[\\d]*[\\,]*[\\d]+[\\s]{1}[Товаров]";
+    String PRICE_EXPRESSION = "[от][\\s]{1}[\\d]+[\\,]*[\\d]*";
 
 }
