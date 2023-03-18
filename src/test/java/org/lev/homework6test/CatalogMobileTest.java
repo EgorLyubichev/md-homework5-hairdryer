@@ -1,6 +1,6 @@
 package org.lev.homework6test;
 
-import org.lev.BaseTest;
+import org.lev.MobileBaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,7 +32,6 @@ import static org.lev.constants.OnlinerConstant.HDD;
 import static org.lev.constants.OnlinerConstant.HDD_NAME;
 import static org.lev.constants.OnlinerConstant.HOUSE;
 import static org.lev.constants.OnlinerConstant.LAPTOPS_COMPUTERS_MONITORS;
-import static org.lev.constants.OnlinerConstant.LEFT_COLUMN;
 import static org.lev.constants.OnlinerConstant.MOTHERBOARD;
 import static org.lev.constants.OnlinerConstant.MOTHERBOARD_NAME;
 import static org.lev.constants.OnlinerConstant.NET_APPLIANCES;
@@ -44,13 +42,12 @@ import static org.lev.constants.OnlinerConstant.SSD;
 import static org.lev.constants.OnlinerConstant.SSD_NAME;
 import static org.lev.constants.OnlinerConstant.VIDEOCARD;
 import static org.lev.constants.OnlinerConstant.VIDEOCARD_NAME;
-import static org.testng.Assert.assertTrue;
 
-public class CatalogTest extends BaseTest implements CatalogPageTestInterface{
+public class CatalogMobileTest extends MobileBaseTest implements CatalogPageTestInterface {
 
     @BeforeMethod
     public void openCatalogPage() {
-        onlinerBasePage.openPage(ONLINER_CATALOG_PAGE);
+        mobileBasePage.openPage(ONLINER_CATALOG_PAGE);
     }
 
     @DataProvider(name = "mainCatalogSections")
@@ -67,23 +64,17 @@ public class CatalogTest extends BaseTest implements CatalogPageTestInterface{
         };
     }
 
+    @Override
     @Test(
-            testName = "Наличие основных разделов в меню.",
+            testName = "iPhone: Наличие основных разделов в меню.",
             dataProvider = "mainCatalogSections")
     public void testMainSectionsOfCatalog(By sectionPath, String text) {
         SoftAssert soft = new SoftAssert();
-        soft.assertTrue(driver.findElement(sectionPath).isDisplayed());
-        soft.assertEquals(driver.findElement(sectionPath).getText(), text);
+        soft.assertTrue(mobileDriver.findElement(sectionPath).isDisplayed());
+        soft.assertEquals(mobileDriver.findElement(sectionPath).getText(), text);
         soft.assertAll();
     }
 
-    @Test(testName = "Наличие вертикальной колонки слева.")
-    public void testLeftColumnIsExist() {
-        catalogPage
-                .clickComputersSection()
-                .scrollDown180();
-        assertTrue(driver.findElement(LEFT_COLUMN).isDisplayed());
-    }
 
     @DataProvider(name = "ComputerSections")
     public static Object[][] getComputerCategoryPath() {
@@ -94,17 +85,16 @@ public class CatalogTest extends BaseTest implements CatalogPageTestInterface{
         };
     }
 
+    @Override
     @Test(
-            testName = "Компьютеры и сети: наличие подраздела",
+            testName = "iPhone: наличие подразделов 'Компьютеры и сети'",
             dataProvider = "ComputerSections"
     )
     public void testComputerSectionIsExist(By path, String text) {
-        catalogPage
-                .clickComputersSection()
-                .scrollDown180();
+        mobileCatalogPage.clickComputersSection();
         SoftAssert soft = new SoftAssert();
-        soft.assertTrue(driver.findElement(path).isEnabled());
-        soft.assertEquals(driver.findElement(path).getAttribute("innerText"), text);
+        soft.assertTrue(mobileDriver.findElement(path).isEnabled());
+        soft.assertEquals(mobileDriver.findElement(path).getAttribute("innerText"), text);
         soft.assertAll();
     }
 
@@ -121,42 +111,30 @@ public class CatalogTest extends BaseTest implements CatalogPageTestInterface{
         };
     }
 
+    @Override
     @Test(
-            testName = "Комплектующие: наличие названия, количества товаров, мин.цена",
-            dataProvider = "AccessoriesSubCategories")
+            testName = "iPhone: наличие подразделов 'Комплектующие'",
+            dataProvider = "AccessoriesSubCategories"
+    )
     public void testAccessoriesSections(By path, String name) {
-        catalogPage
+        mobileCatalogPage
                 .clickComputersSection()
-                .scrollDown180()
                 .clickAccessories();
-        WebElement element = driver.findElement(path);
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(element));
+        WebElement element = mobileDriver.findElement(path);
+        new WebDriverWait(mobileDriver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(element));
 
         SoftAssert soft = new SoftAssert();
         soft.assertTrue(element.isDisplayed());
         soft.assertTrue(element.getAttribute("innerHTML").contains(name));
 
         Pattern pattern = Pattern.compile(PRODUCTS_NUMBER_EXPRESSION);
-        Matcher matcher = pattern.matcher(driver.findElement(path).getAttribute("innerHTML"));
+        Matcher matcher = pattern.matcher(mobileDriver.findElement(path).getAttribute("innerHTML"));
         soft.assertTrue(matcher.find());
 
         Pattern pattern2 = Pattern.compile(PRICE_EXPRESSION);
-        Matcher matcher2 = pattern2.matcher(driver.findElement(path).getAttribute("innerHTML"));
+        Matcher matcher2 = pattern2.matcher(mobileDriver.findElement(path).getAttribute("innerHTML"));
         soft.assertTrue(matcher2.find());
 
         soft.assertAll();
-    }
-
-    @Test
-    public void testTest() {
-        catalogPage
-                .clickComputersSection()
-                .scrollDown180()
-                .clickAccessories();
-
-        WebElement element = driver.findElement(VIDEOCARD);
-
-        System.out.println("element text -> " +
-                element.getAttribute("innerHTML"));
     }
 }

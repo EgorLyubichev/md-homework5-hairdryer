@@ -2,9 +2,6 @@ package org.lev.constants;
 
 import org.openqa.selenium.By;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public interface OnlinerConstant {
 
     String ONLINER_HOME_PAGE = "https://www.onliner.by/";
@@ -29,7 +26,7 @@ public interface OnlinerConstant {
     /*Computers and nets category*/
     By LAPTOPS_COMPUTERS_MONITORS = By.xpath("//div[@class='catalog-navigation-list__aside-title'][contains(text(), 'Ноутбуки')][contains(text(), 'мониторы')]");
     By NET_APPLIANCES = By.xpath("//div[contains(text(), 'Сетевое')]");
-    By ACCESSORIES = By.xpath("//div[@class='catalog-navigation-list__aside-title'][contains(text(), ' Комплектующие')][1]");
+    By ACCESSORIES = By.xpath("//div[@class='catalog-navigation-list__aside-title'][contains(text(), 'Комплектующие')]");
 
     /*Accessories category*/
     By VIDEOCARD = By.xpath("//a[@href='https://catalog.onliner.by/videocard']");
