@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -147,16 +150,8 @@ public class CatalogTest extends BaseTest implements CatalogPageTestInterface{
         soft.assertAll();
     }
 
-    @Test
-    public void testTest() {
-        catalogPage
-                .clickComputersSection()
-                .scrollDown180()
-                .clickAccessories();
-
-        WebElement element = driver.findElement(VIDEOCARD);
-
-        System.out.println("element text -> " +
-                element.getAttribute("innerHTML"));
+    @AfterClass(alwaysRun = true)
+    public void closeBrowser() {
+        driver.quit();
     }
 }

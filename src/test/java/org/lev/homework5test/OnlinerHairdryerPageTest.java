@@ -3,6 +3,9 @@ package org.lev.homework5test;
 import org.lev.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -14,6 +17,11 @@ import static org.lev.constants.OnlinerConstant.ONLINER_HOME_PAGE;
 import static org.testng.Assert.assertTrue;
 
 public class OnlinerHairdryerPageTest extends BaseTest {
+
+    @BeforeMethod
+    public void openCatalogPage() {
+        onlinerBasePage.openPage(ONLINER_HOME_PAGE);
+    }
 
     @Test
     public void testToGetList_AllProductsAreBraun() {
@@ -65,5 +73,10 @@ public class OnlinerHairdryerPageTest extends BaseTest {
         List<WebElement> elements = hairdryersPage.getProductCards(MAESTRO);
 
         assertTrue(hairdryersPage.isLabelHairdryer(elements, MAESTRO));
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void closeBrowser() {
+        driver.quit();
     }
 }

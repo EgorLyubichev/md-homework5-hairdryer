@@ -1,7 +1,6 @@
 package org.lev.homework6;
 
 import org.lev.onliner.MobileBasePage;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,13 +21,10 @@ public class MobileCatalogPage extends MobileBasePage {
     }
 
     public MobileCatalogPage clickAccessories(){
-
-
         new WebDriverWait(mobileDriver, Duration.ofSeconds(4))
                 .until(ExpectedConditions.elementToBeClickable(mobileDriver.findElement(ACCESSORIES)));
          mobileDriver.findElement(ACCESSORIES).click();
          mobileDriver.findElement(ACCESSORIES).click();
-
         return this;
     }
 }
